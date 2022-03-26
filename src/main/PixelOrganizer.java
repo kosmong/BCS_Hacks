@@ -24,12 +24,13 @@ public class PixelOrganizer {
         }
     }
 
-    public void setAllColors(BufferedImage img, int region, Color color) {
+    public Pixel[][] setAllColors(Pixel[][] imageData, int region, Color color) {
         PixelRegion changeRegion = allPixels.get(region);
 
         if (changeRegion != null) {
-            changeRegion.setColors(img, color);
+            return changeRegion.setColors(imageData, color);
         }
+        return imageData;
     }
 
     public HashMap<Integer, PixelRegion> getAllPixels() {
