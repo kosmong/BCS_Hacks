@@ -54,6 +54,7 @@ public class PixelOrganizer {
 //  //have 2d array of all regions setup and available as regions[x][y]
 //  public void propagateRegion(x y direction image regionNumber) {
 //      if (regionNumber != regions[x][y] && regions[x][y] != 0 && x and y in o <= xy < WIDTH/HEIGHT) {
+//          set region to be of regionNumber and add to pixelGroup
 //          if (!direction.stringEquals("n")) {
 //              propagateRegion(x, y+1, "s");
 //          }
