@@ -6,9 +6,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
+
 public class NumberPainter {
     private BufferedImage img;
     private PixelOrganizer organizer;
+    private Pixel[][] imageData;
     private int width;
     private int height;
     private final static int BLACK = Color.BLACK.getRGB();
@@ -22,6 +25,7 @@ public class NumberPainter {
             organizer = new PixelOrganizer();
             width = img.getWidth();
             height = img.getHeight();
+            imageData = new Pixel[width][height];
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,8 +35,17 @@ public class NumberPainter {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 if (img.getRGB(x, y) > TOLERANCE) {
+                    try {
+                        imageData[x][y] = new Pixel(x, y, Color.WHITE);
+                    } catch (NullPointerException n) {
+                        System.out.println(x + " <- x | y -> " + y);
+                        throw new RuntimeException();
+                    }
                     img.setRGB(x, y, WHITE);
                 } else {
+                    imageData[x][y] = new Pixel(x, y, Color.BLACK);
+                    imageData[x][y].setAsBorder();
+                    organizer.addPixel(0, imageData[x][y]);
                     img.setRGB(x, y, BLACK);
                 }
             }
@@ -44,6 +57,7 @@ public class NumberPainter {
             for (int y = 0; y < height; y++) {
                 if (img.getRGB(x, y) == BLACK) {
                     Pixel p = new Pixel(x, y, Color.BLACK);
+                    p.setAsBorder();;
                     organizer.addPixel(0, p);
                 }
             }
@@ -53,13 +67,19 @@ public class NumberPainter {
     public void renderImage(String fileName) {
         File outPut = new File(DIRECTORY, fileName);
         try {
-            ImageIO.write(img, "jpeg", outPut);
+            BufferedImage tempImage = new BufferedImage(width, height, img.getType());
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    tempImage.setRGB(x, y, imageData[x][y].getColourARBG());
+                }
+            }
+            ImageIO.write(tempImage, "jpeg", outPut);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void changeRegionColor(int region, Color color) {
-        organizer.setAllColors(img, region, color);
+        imageData = organizer.setAllColors(imageData, region, color);
     }
 }

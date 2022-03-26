@@ -20,12 +20,13 @@ public class PixelOrganizer {
         }
     }
 
-    public void setAllColors(BufferedImage img, int region, Color color) {
+    public Pixel[][] setAllColors(Pixel[][] imageData, int region, Color color) {
         PixelRegion changeRegion = allPixels.get(region);
 
         if (changeRegion != null) {
-            changeRegion.setColors(img, color);
+            return changeRegion.setColors(imageData, color);
         }
+        return imageData;
     }
     // Iterate through the img array, and put it in the map.
     // right now, it will simply assign all pixels to one region (region 1) if it's not a border
