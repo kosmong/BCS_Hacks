@@ -45,8 +45,12 @@ public class RunNumberPainter extends JFrame implements ActionListener {
                 int y = e.getY() - yZero;
                 System.out.println(x);
                 System.out.println(y);
+                System.out.println("COORDS");
+                System.out.println("WIDTH HEIGHT");
+                System.out.println(painter.getWidth());
+                System.out.println(painter.getHeight());
                 if (x >= 0 && y >= 0 && x < painter.getWidth() & y < painter.getHeight()) {
-                    painter.changeRegionColor(0, currColor);
+                    painter.propagateColor(x, y, currColor);
                     painter.renderImage("thick_square.jpg");
                     image = new ImageIcon("src/imagesAltered/thick_square.jpg");
                     imgLabel.setIcon(image);

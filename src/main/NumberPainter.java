@@ -81,6 +81,21 @@ public class NumberPainter {
         }
     }
 
+    public void propagateColor(int x, int y, Color color) {
+        boolean inBounds = x >= 0 && y >= 0 && x < width && y < height;
+        if (inBounds) {
+            Pixel target = imageData[x][y];
+            boolean diffColor = color.getRGB() != target.getColourARBG();
+            boolean notBorder = !target.pixelInBorder();
+            if (diffColor && notBorder) {
+                target.setColor(color);
+                propagateColor(x++, y, color);
+                propagateColor(x--, y, color);
+                propagateColor(x, y++, color);
+                propagateColor(x, y--, color);
+            }
+        }
+    }
 
     public void renderImage(String fileName) {
         File outPut = new File(DIRECTORY, fileName);
