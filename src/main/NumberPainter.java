@@ -9,7 +9,8 @@ import java.io.IOException;
 import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
 
 public class NumberPainter {
-    private BufferedImage img;
+    private BufferedImage inputImg;
+    private BufferedImage outputImg;
     private PixelOrganizer organizer;
     private Pixel[][] imageData;
     private int width;
@@ -21,10 +22,10 @@ public class NumberPainter {
 
     public NumberPainter(String imgLocation) {
         try {
-            img = ImageIO.read(new File(imgLocation));
+            inputImg = ImageIO.read(new File(imgLocation));
             organizer = new PixelOrganizer();
-            width = img.getWidth();
-            height = img.getHeight();
+            width = inputImg.getWidth();
+            height = inputImg.getHeight();
             imageData = new Pixel[width][height];
         } catch (IOException e) {
             e.printStackTrace();
@@ -52,10 +53,15 @@ public class NumberPainter {
         }
     }
 
+    public void getStencil() {
+        getBorders();
+        getRegion();
+    }
+
     public void getBorders() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (img.getRGB(x, y) == BLACK) {
+                if (inputImg.getRGB(x, y) == BLACK) {
                     Pixel p = new Pixel(x, y, Color.BLACK);
                     p.setAsBorder();;
                     organizer.addPixel(0, p);
@@ -64,9 +70,40 @@ public class NumberPainter {
         }
     }
 
+    public void getRegion() {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if (inputImg.getRGB(x, y) == WHITE) {
+                    Pixel p = new Pixel(x, y, Color.WHITE);
+                    organizer.addPixel(1, p);
+                }
+            }
+        }
+    }
+
+
     public void renderImage(String fileName) {
+        //for (PixelRegion next : organizer.getAllPixels().values()) {
+        PixelRegion border = organizer.getAllPixels().get(0);
+        for (Pixel thisPixel : border.getPixels()) {
+            outputImg.setRGB(thisPixel.getX(), thisPixel.getY(), thisPixel.getColor().getRGB());
+        }
+
+        PixelRegion colouring = organizer.getAllPixels().get(1);
+        for (Pixel thisPixel : colouring.getPixels()) {
+            outputImg.setRGB(thisPixel.getX(), thisPixel.getY(), thisPixel.getColor().getRGB());
+        }
+        //}
+
+//        for (int x = 0; x < width; x++) {
+//            for (int y = 0; y < height; y++) {
+//                outputImg.setRGB(x, y, inputImg.getRGB(x, y));
+//            }
+//        }
+
         File outPut = new File(DIRECTORY, fileName);
         try {
+
             BufferedImage tempImage = new BufferedImage(width, height, img.getType());
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
@@ -74,6 +111,7 @@ public class NumberPainter {
                 }
             }
             ImageIO.write(tempImage, "jpeg", outPut);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

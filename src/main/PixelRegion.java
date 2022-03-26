@@ -22,4 +22,8 @@ public class PixelRegion {
         }
         return imageData;
     }
+
+    public ArrayList<Pixel> getPixels() {
+        return pixels;
+    }
 }

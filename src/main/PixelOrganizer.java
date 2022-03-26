@@ -17,6 +17,10 @@ public class PixelOrganizer {
     public void addPixel(int region, Pixel pixel) {
         if (allPixels.containsKey(region)) {
             allPixels.get(region).addPixel(pixel);
+        } else {
+            PixelRegion pixelRegion = new PixelRegion();
+            pixelRegion.addPixel(pixel);
+            allPixels.put(region, pixelRegion);
         }
     }
 
@@ -28,6 +32,11 @@ public class PixelOrganizer {
         }
         return imageData;
     }
+
+    public HashMap<Integer, PixelRegion> getAllPixels() {
+        return allPixels;
+    }
+
     // Iterate through the img array, and put it in the map.
     // right now, it will simply assign all pixels to one region (region 1) if it's not a border
     // width height pixel TBD
