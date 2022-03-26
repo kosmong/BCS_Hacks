@@ -38,7 +38,7 @@ public class RunNumberPainter extends JFrame implements ActionListener {
                 super.mouseClicked(e);
                 ColorPicker currColorPane = (ColorPicker) newContentPane;
                 Color currColor = currColorPane.getPalette().getColor();
-                painter.changeRegionColor(1, currColor);
+                painter.changeRegionColor(0, currColor);
                 painter.renderImage("boba.jpg");
                 image = new ImageIcon("src/imagesAltered/boba.jpg");
                 imgLabel.setIcon(image);
