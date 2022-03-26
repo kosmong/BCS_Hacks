@@ -9,17 +9,19 @@ import java.io.IOException;
 public class NumberPainter {
     private BufferedImage img;
     private PixelOrganizer organizer;
-    private int width = img.getWidth();
-    private int height = img.getHeight();
+    private int width;
+    private int height;
     private final static int BLACK = Color.BLACK.getRGB();
     private final static int WHITE = Color.WHITE.getRGB();
     private final static int TOLERANCE = Color.GRAY.getRGB();
-    private final static String WRITELOCATION = "src/imagesAltered";
+    private final static String DIRECTORY = "src/imagesAltered";
 
     public NumberPainter(String imgLocation) {
         try {
             img = ImageIO.read(new File(imgLocation));
             organizer = new PixelOrganizer();
+            width = img.getWidth();
+            height = img.getHeight();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,9 +51,9 @@ public class NumberPainter {
     }
 
     public void renderFunction() {
-        File outPut = new File(WRITELOCATION);
+        File outPut = new File(DIRECTORY, "penguin.jpeg");
         try {
-            ImageIO.write(img, "penguin", outPut);
+            ImageIO.write(img, "jpeg", outPut);
         } catch (IOException e) {
             e.printStackTrace();
         }
