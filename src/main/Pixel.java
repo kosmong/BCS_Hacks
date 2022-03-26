@@ -24,4 +24,8 @@ public class Pixel {
     public int getY() {
         return y;
     }
+
+    public Color getColor() {
+        return color;
+    }
 }

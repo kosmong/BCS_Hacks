@@ -67,17 +67,17 @@ public class testNumberPainter {
     @Test
     public void testBorderSimpleShapes() {
         paintThickSquare.imageCleanUp();
-        paintThickSquare.getBorders();
+        paintThickSquare.getStencil();
         paintThickSquare.changeRegionColor(0, CYAN);
         paintThickSquare.renderImage(WRITETHICKSQUARE);
 
         paintThinSquare.imageCleanUp();
-        paintThinSquare.getBorders();
+        paintThinSquare.getStencil();
         paintThinSquare.changeRegionColor(0, RED);
         paintThinSquare.renderImage(WRITETHINSQUARE);
 
         paintCircles.imageCleanUp();
-        paintCircles.getBorders();
+        paintCircles.getStencil();
         paintCircles.changeRegionColor(0, RED);
         paintCircles.renderImage(WRITECIRCLES);
     }
@@ -85,37 +85,37 @@ public class testNumberPainter {
     @Test
     public void testBorderStencils() {
         paintPenguin.imageCleanUp();
-        paintPenguin.getBorders();
+        paintPenguin.getStencil();
         paintPenguin.changeRegionColor(0, CYAN);
         paintPenguin.renderImage(WRITEPENGUIN);
 
         paintTiger.imageCleanUp();
-        paintTiger.getBorders();
+        paintTiger.getStencil();
         paintTiger.changeRegionColor(0, ORANGE);
         paintTiger.renderImage(WRITETIGER);
 
         paintPenguinBalloon.imageCleanUp();
-        paintPenguinBalloon.getBorders();
+        paintPenguinBalloon.getStencil();
         paintPenguinBalloon.changeRegionColor(0, CYAN);
         paintPenguinBalloon.renderImage(WRITEPENGUINBALLOON);
 
         paintBoba.imageCleanUp();
-        paintBoba.getBorders();
+        paintBoba.getStencil();
         paintBoba.changeRegionColor(0, Color.DARK_GRAY);
         paintBoba.renderImage(WRITEBOBA);
 
         paintPenguinFamily.imageCleanUp();
-        paintPenguinFamily.getBorders();
-        paintPenguinFamily.changeRegionColor(0, Color.LIGHT_GRAY);
+        paintPenguinFamily.getStencil();
+        paintPenguinFamily.changeRegionColor(0, RED);
         paintPenguinFamily.renderImage(WRITEPENGUINFAMILY);
 
         paintLineart.imageCleanUp();
-        paintLineart.getBorders();
+        paintLineart.getStencil();
         paintLineart.changeRegionColor(0, CYAN);
         paintLineart.renderImage(WRITELINEART);
 
         paintCandle.imageCleanUp();
-        paintCandle.getBorders();
+        paintCandle.getStencil();
         paintCandle.changeRegionColor(0, Color.BLUE);
         paintCandle.renderImage(WRITEPAINTNUMCANDLE);
     }

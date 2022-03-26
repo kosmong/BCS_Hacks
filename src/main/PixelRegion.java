@@ -21,4 +21,8 @@ public class PixelRegion {
             img.setRGB(next.getX(), next.getY(), color.getRGB());
         }
     }
+
+    public ArrayList<Pixel> getPixels() {
+        return pixels;
+    }
 }
