@@ -63,7 +63,7 @@ public class NumberPainter {
             for (int y = 0; y < height; y++) {
                 if (inputImg.getRGB(x, y) == BLACK) {
                     Pixel p = new Pixel(x, y, Color.BLACK);
-                    p.setAsBorder();;
+                    p.setAsBorder();
                     organizer.addPixel(0, p);
                 }
             }
@@ -84,22 +84,16 @@ public class NumberPainter {
 
     public void renderImage(String fileName) {
         //for (PixelRegion next : organizer.getAllPixels().values()) {
-        PixelRegion border = organizer.getAllPixels().get(0);
-        for (Pixel thisPixel : border.getPixels()) {
-            outputImg.setRGB(thisPixel.getX(), thisPixel.getY(), thisPixel.getColor().getRGB());
-        }
-
-        PixelRegion colouring = organizer.getAllPixels().get(1);
-        for (Pixel thisPixel : colouring.getPixels()) {
-            outputImg.setRGB(thisPixel.getX(), thisPixel.getY(), thisPixel.getColor().getRGB());
-        }
-        //}
-
-//        for (int x = 0; x < width; x++) {
-//            for (int y = 0; y < height; y++) {
-//                outputImg.setRGB(x, y, inputImg.getRGB(x, y));
-//            }
+//        PixelRegion border = organizer.getAllPixels().get(0);
+//        for (Pixel thisPixel : border.getPixels()) {
+//            outputImg.setRGB(thisPixel.getX(), thisPixel.getY(), thisPixel.getColor().getRGB());
 //        }
+//
+//        PixelRegion colouring = organizer.getAllPixels().get(1);
+//        for (Pixel thisPixel : colouring.getPixels()) {
+//            outputImg.setRGB(thisPixel.getX(), thisPixel.getY(), thisPixel.getColor().getRGB());
+//        }
+        //}
 
         File outPut = new File(DIRECTORY, fileName);
         try {
