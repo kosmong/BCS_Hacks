@@ -14,6 +14,7 @@ public class NumberPainter {
     private final static int BLACK = Color.BLACK.getRGB();
     private final static int WHITE = Color.WHITE.getRGB();
     private final static int TOLERANCE = Color.GRAY.getRGB();
+    private final static String WRITELOCATION = "src/imagesAltered";
 
     public NumberPainter(String imgLocation) {
         try {
@@ -44,6 +45,15 @@ public class NumberPainter {
                     organizer.addPixel(0, p);
                 }
             }
+        }
+    }
+
+    public void renderFunction() {
+        File outPut = new File(WRITELOCATION);
+        try {
+            ImageIO.write(img, "penguin", outPut);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
