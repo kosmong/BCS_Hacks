@@ -22,10 +22,16 @@ public class RunNumberPainter extends JFrame implements ActionListener {
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
         //initComponents();
+        JComponent newContentPane = new Palette(Color.CYAN);
+        newContentPane.setOpaque(true); //content panes must be opaque
+        setContentPane(newContentPane);
+
+
         image = new ImageIcon(PENGUIN);
         add(new JLabel(image));
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
         setVisible(true);
     }
 
