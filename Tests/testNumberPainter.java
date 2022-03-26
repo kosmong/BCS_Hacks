@@ -21,6 +21,7 @@ public class testNumberPainter {
 
     @Test
     public void testGetBorder() {
+        painter.imageCleanUp();
         painter.getBorders();
         painter.changeRegionColor(0, RED);
         painter.renderFunction();

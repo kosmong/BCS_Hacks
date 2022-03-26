@@ -30,7 +30,7 @@ public class NumberPainter {
     public void imageCleanUp() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (img.getRGB(x, y) <= TOLERANCE) {
+                if (img.getRGB(x, y) > TOLERANCE) {
                     img.setRGB(x, y, WHITE);
                 } else {
                     img.setRGB(x, y, BLACK);
