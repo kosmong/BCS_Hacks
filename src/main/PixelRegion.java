@@ -15,11 +15,12 @@ public class PixelRegion {
         pixels.add(pixel);
     }
 
-    public void setColors(BufferedImage img, Color color) {
+    public Pixel[][] setColors(Pixel[][] imageData, Color color) {
         for (Pixel next : pixels) {
             next.setColor(color);
-            img.setRGB(next.getX(), next.getY(), color.getRGB());
+            imageData[next.getX()][next.getY()].setColor(color);
         }
+        return imageData;
     }
 
     public ArrayList<Pixel> getPixels() {

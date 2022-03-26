@@ -6,10 +6,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
+
 public class NumberPainter {
     private BufferedImage inputImg;
     private BufferedImage outputImg;
     private PixelOrganizer organizer;
+    private Pixel[][] imageData;
     private int width;
     private int height;
     private final static int BLACK = Color.BLACK.getRGB();
@@ -23,8 +26,7 @@ public class NumberPainter {
             organizer = new PixelOrganizer();
             width = inputImg.getWidth();
             height = inputImg.getHeight();
-
-            outputImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            imageData = new Pixel[width][height];
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,10 +35,19 @@ public class NumberPainter {
     public void imageCleanUp() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (inputImg.getRGB(x, y) > TOLERANCE) {
-                    inputImg.setRGB(x, y, WHITE);
+                if (img.getRGB(x, y) > TOLERANCE) {
+                    try {
+                        imageData[x][y] = new Pixel(x, y, Color.WHITE);
+                    } catch (NullPointerException n) {
+                        System.out.println(x + " <- x | y -> " + y);
+                        throw new RuntimeException();
+                    }
+                    img.setRGB(x, y, WHITE);
                 } else {
-                    inputImg.setRGB(x, y, BLACK);
+                    imageData[x][y] = new Pixel(x, y, Color.BLACK);
+                    imageData[x][y].setAsBorder();
+                    organizer.addPixel(0, imageData[x][y]);
+                    img.setRGB(x, y, BLACK);
                 }
             }
         }
@@ -52,6 +63,7 @@ public class NumberPainter {
             for (int y = 0; y < height; y++) {
                 if (inputImg.getRGB(x, y) == BLACK) {
                     Pixel p = new Pixel(x, y, Color.BLACK);
+                    p.setAsBorder();;
                     organizer.addPixel(0, p);
                 }
             }
@@ -91,13 +103,21 @@ public class NumberPainter {
 
         File outPut = new File(DIRECTORY, fileName);
         try {
-            ImageIO.write(outputImg, "jpeg", outPut);
+
+            BufferedImage tempImage = new BufferedImage(width, height, img.getType());
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    tempImage.setRGB(x, y, imageData[x][y].getColourARBG());
+                }
+            }
+            ImageIO.write(tempImage, "jpeg", outPut);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void changeRegionColor(int region, Color color) {
-        organizer.setAllColors(inputImg, region, color);
+        imageData = organizer.setAllColors(imageData, region, color);
     }
 }
