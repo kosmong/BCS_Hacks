@@ -31,11 +31,17 @@ public class testNumberPainter {
     @Test
     public void testGetBorder() {
 
+
         paintSquare.imageCleanUp();
         paintSquare.getBorders();
-        paintSquare.changeRegionColor(0, LIGHTGRAY);
+        paintSquare.changeRegionColor(0, CYAN);
         paintSquare.renderFunction(WRITESQUARE);
 
+
+    }
+
+    @Test
+    public void testPenguin() {
         paintPenguin.imageCleanUp();
         paintPenguin.getBorders();
         paintPenguin.changeRegionColor(0, LIGHTGRAY);
