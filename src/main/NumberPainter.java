@@ -50,7 +50,7 @@ public class NumberPainter {
         }
     }
 
-    public void renderFunction(String fileName) {
+    public void renderImage(String fileName) {
         File outPut = new File(DIRECTORY, fileName);
         try {
             ImageIO.write(img, "jpeg", outPut);
