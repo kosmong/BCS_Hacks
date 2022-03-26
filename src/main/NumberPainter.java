@@ -7,7 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class NumberPainter {
-    private BufferedImage img;
+    private BufferedImage inputImg;
+    //private BufferedImage outputImg;
     private PixelOrganizer organizer;
     private int width;
     private int height;
@@ -18,10 +19,12 @@ public class NumberPainter {
 
     public NumberPainter(String imgLocation) {
         try {
-            img = ImageIO.read(new File(imgLocation));
+            inputImg = ImageIO.read(new File(imgLocation));
             organizer = new PixelOrganizer();
-            width = img.getWidth();
-            height = img.getHeight();
+            width = inputImg.getWidth();
+            height = inputImg.getHeight();
+
+            //outputImg = new BufferedImage(width, height, WHITE);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,19 +33,20 @@ public class NumberPainter {
     public void imageCleanUp() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (img.getRGB(x, y) > TOLERANCE) {
-                    img.setRGB(x, y, WHITE);
+                if (inputImg.getRGB(x, y) > TOLERANCE) {
+                    inputImg.setRGB(x, y, WHITE);
                 } else {
-                    img.setRGB(x, y, BLACK);
+                    inputImg.setRGB(x, y, BLACK);
                 }
             }
         }
     }
 
+    //changed to non border
     public void getBorders() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (img.getRGB(x, y) == BLACK) {
+                if (inputImg.getRGB(x, y) == BLACK) {
                     Pixel p = new Pixel(x, y, Color.BLACK);
                     organizer.addPixel(0, p);
                 }
@@ -51,15 +55,21 @@ public class NumberPainter {
     }
 
     public void renderImage(String fileName) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+
+            }
+        }
+
         File outPut = new File(DIRECTORY, fileName);
         try {
-            ImageIO.write(img, "jpeg", outPut);
+            ImageIO.write(inputImg, "jpeg", outPut);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void changeRegionColor(int region, Color color) {
-        organizer.setAllColors(img, region, color);
+        organizer.setAllColors(inputImg, region, color);
     }
 }
