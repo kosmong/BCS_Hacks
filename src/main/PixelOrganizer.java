@@ -1,5 +1,7 @@
 package main;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
 public class PixelOrganizer {
@@ -14,6 +16,14 @@ public class PixelOrganizer {
     public void addPixel(int region, Pixel pixel) {
         if (allPixels.containsKey(region)) {
             allPixels.get(region).addPixel(pixel);
+        }
+    }
+
+    public void setAllColors(BufferedImage img, int region, Color color) {
+        PixelRegion changeRegion = allPixels.get(region);
+
+        if (changeRegion != null) {
+            changeRegion.setColors(img, color);
         }
     }
 }

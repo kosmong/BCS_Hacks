@@ -58,4 +58,8 @@ public class NumberPainter {
             e.printStackTrace();
         }
     }
+
+    public void changeRegionColor(int region, Color color) {
+        organizer.setAllColors(img, region, color);
+    }
 }
