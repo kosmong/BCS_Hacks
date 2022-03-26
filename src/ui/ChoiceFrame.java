@@ -14,6 +14,9 @@ public class ChoiceFrame extends JFrame implements ActionListener {
     private static final String PENGUINBALLOON = "src/imagesOriginal/penguinballoon.jpeg";
     private static final String PAINTBYNUMCANDLE = "src/imagesOriginal/paintbynumbercandle.jpeg";
 
+    private final static int WIDTH = 500;
+    private final static int HEIGHT = 300;
+
     private JButton square;
     private JButton circles;
     private JButton boba;
@@ -32,7 +35,26 @@ public class ChoiceFrame extends JFrame implements ActionListener {
     }
 
     public void initComponents() {
+        square = new JButton("Square");
+        square.addActionListener(this);
 
+        boba = new JButton("Boba");
+        boba.addActionListener(this);
+
+        tiger = new JButton("Tiger");
+        tiger.addActionListener(this);
+
+        penguinBalloon = new JButton("Penguin Balloon");
+        penguinBalloon.addActionListener(this);
+
+        candle = new JButton("Candle");
+        candle.addActionListener(this);
+
+        add(square);
+        add(boba);
+        add(tiger);
+        add(penguinBalloon);
+        add(candle);
     }
 
     @Override

@@ -12,9 +12,6 @@ public class TitleFrame extends JFrame implements ActionListener {
     protected final static int HEIGHT = 600;
     private static final String PENGUIN  = "src/imagesOriginal/doublepenguin.jpeg";
 
-
-    private NumberPainter painter;
-    private JLabel description;
     private JButton start;
     private ImageIcon image;
 
@@ -58,6 +55,7 @@ public class TitleFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(start)) {
             new ChoiceFrame();
+            dispose();
         }
     }
 
