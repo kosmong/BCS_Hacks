@@ -9,6 +9,8 @@ import java.io.IOException;
 public class NumberPainter {
     private BufferedImage img;
     private PixelOrganizer organizer;
+    private int width = img.getWidth();
+    private int height = img.getHeight();
 
     public NumberPainter(String imgLocation) {
         try {
@@ -20,9 +22,18 @@ public class NumberPainter {
     }
 
     public void imageCleanUp() {
-        int width = img.getWidth();
-        int height = img.getHeight();
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if (img.getRGB(x, y) != 40) {
+                    img.setRGB(x, y, 40);
+                } else {
+                    img.setRGB(x, y, 256);
+                }
+            }
+        }
+    }
 
+    public void getBorders() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 if (img.getRGB(x, y) != 40) {
