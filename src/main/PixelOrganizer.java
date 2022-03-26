@@ -46,5 +46,37 @@ public class PixelOrganizer {
 //            return 1;
 //        }
 //    }
+//
+//  public void setRegionToSection(x y regionNumber image) {
+//      propagateRegion(x y "b" image regionNumber);
+//  }
+//
+//  //have 2d array of all regions setup and available as regions[x][y]
+//  public void propagateRegion(x y direction image regionNumber) {
+//      if (regionNumber != regions[x][y] && regions[x][y] != 0 && x and y in o <= xy < WIDTH/HEIGHT) {
+//          if (!direction.stringEquals("n")) {
+//              propagateRegion(x, y+1, "s");
+//          }
+//          if (!direction.stringEquals("e")) {
+//              propagateRegion(x-1, y, "w");
+//          }
+//          if (!direction.stringEquals("s")) {
+//              propagateRegion(x, y-1, "n");
+//          }
+//          if (!direction.stringEquals("w")) {
+//              propagateRegion(x+1, y, "e");
+//          }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//  }
+//
+//
 
 }
