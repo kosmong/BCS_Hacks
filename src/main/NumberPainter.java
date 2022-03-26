@@ -35,19 +35,19 @@ public class NumberPainter {
     public void imageCleanUp() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (img.getRGB(x, y) > TOLERANCE) {
+                if (inputImg.getRGB(x, y) > TOLERANCE) {
                     try {
                         imageData[x][y] = new Pixel(x, y, Color.WHITE);
                     } catch (NullPointerException n) {
                         System.out.println(x + " <- x | y -> " + y);
                         throw new RuntimeException();
                     }
-                    img.setRGB(x, y, WHITE);
+                    inputImg.setRGB(x, y, WHITE);
                 } else {
                     imageData[x][y] = new Pixel(x, y, Color.BLACK);
                     imageData[x][y].setAsBorder();
                     organizer.addPixel(0, imageData[x][y]);
-                    img.setRGB(x, y, BLACK);
+                    inputImg.setRGB(x, y, BLACK);
                 }
             }
         }
@@ -104,7 +104,7 @@ public class NumberPainter {
         File outPut = new File(DIRECTORY, fileName);
         try {
 
-            BufferedImage tempImage = new BufferedImage(width, height, img.getType());
+            BufferedImage tempImage = new BufferedImage(width, height, inputImg.getType());
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
                     tempImage.setRGB(x, y, imageData[x][y].getColourARBG());
