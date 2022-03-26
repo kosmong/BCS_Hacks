@@ -50,8 +50,8 @@ public class NumberPainter {
         }
     }
 
-    public void renderFunction() {
-        File outPut = new File(DIRECTORY, "penguin.jpeg");
+    public void renderFunction(String fileName) {
+        File outPut = new File(DIRECTORY, fileName);
         try {
             ImageIO.write(img, "jpeg", outPut);
         } catch (IOException e) {
