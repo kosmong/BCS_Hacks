@@ -3,16 +3,29 @@ package UI;
 import Main.NumberPainter;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RunNumberPainter extends JFrame implements ActionListener {
     private static final String PENGUIN  = "penguin.jpeg";
+    protected final static int WIDTH = 600;
+    protected final static int HEIGHT = 1000;
 
     private NumberPainter painter;
+    private ImageIcon image;
 
     public RunNumberPainter() {
         painter = new NumberPainter(PENGUIN);
+        setSize(WIDTH, HEIGHT);
+        setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+
+        //initComponents();
+        image = new ImageIcon(PENGUIN);
+        //add(image);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
 
