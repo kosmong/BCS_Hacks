@@ -10,7 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class RunNumberPainter extends JFrame implements ActionListener {
-    private static final String PENGUIN  = "src/imagesOriginal/boba.jpg";
+    private static final String PENGUIN  = "src/imagesOriginal/thick_square.jpg";
     protected final static int WIDTH = 800;
     protected final static int HEIGHT = 1000;
 
@@ -38,9 +38,11 @@ public class RunNumberPainter extends JFrame implements ActionListener {
                 super.mouseClicked(e);
                 ColorPicker currColorPane = (ColorPicker) newContentPane;
                 Color currColor = currColorPane.getPalette().getColor();
+                int x = e.getX();
+                int y = e.getY();
                 painter.changeRegionColor(0, currColor);
-                painter.renderImage("boba.jpg");
-                image = new ImageIcon("src/imagesAltered/boba.jpg");
+                painter.renderImage("thick_square.jpg");
+                image = new ImageIcon("src/imagesAltered/thick_square.jpg");
                 imgLabel.setIcon(image);
             }
         });

@@ -36,7 +36,7 @@ public class Pixel {
 
     public boolean pixelInBorder() {
         return isBorder;
-
+    }
     public Color getColor() {
         return color;
 
