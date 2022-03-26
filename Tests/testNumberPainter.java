@@ -6,24 +6,39 @@ import java.awt.*;
 
 public class testNumberPainter {
     private static final String PENGUIN  = "src/imagesOriginal/penguin.jpeg";
+    private static final String SQUARE  = "src/imagesOriginal/thick_square.jpg";
+    private static final String WRITEPENGUIN = "penguin.jpeg";
+    private static final String WRITESQUARE = "thick_square.jpeg";
     private static final Color RED = Color.RED;
-    private NumberPainter painter;
+    private static final Color WHITE = Color.WHITE;
+    private static final Color LIGHTGRAY = Color.LIGHT_GRAY;
+    private static final Color CYAN = Color.CYAN;
+    private NumberPainter paintPenguin;
+    private NumberPainter paintSquare;
 
     @Before
     public void startUp() {
-        painter = new NumberPainter(PENGUIN);
+        paintPenguin = new NumberPainter(PENGUIN);
+        paintSquare = new NumberPainter(SQUARE);
     }
 
-    @Test
-    public void testRender() {
-        painter.renderFunction();
-    }
+//    @Test
+//    public void testRender() {
+//        paintPenguin.renderFunction(WRITEPENGUIN);
+//        paintSquare.renderFunction(WRITESQUARE);
+//    }
 
     @Test
     public void testGetBorder() {
-        painter.imageCleanUp();
-        painter.getBorders();
-        painter.changeRegionColor(0, RED);
-        painter.renderFunction();
+
+        paintSquare.imageCleanUp();
+        paintSquare.getBorders();
+        paintSquare.changeRegionColor(0, LIGHTGRAY);
+        paintSquare.renderFunction(WRITESQUARE);
+
+        paintPenguin.imageCleanUp();
+        paintPenguin.getBorders();
+        paintPenguin.changeRegionColor(0, LIGHTGRAY);
+        paintPenguin.renderFunction(WRITEPENGUIN);
     }
 }
