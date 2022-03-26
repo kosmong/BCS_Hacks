@@ -1,16 +1,12 @@
 package main;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
 public class PixelOrganizer {
-    private BufferedImage img;
-    private int width = img.getWidth();
-    private int height = img.getHeight();
     private HashMap<Integer, PixelRegion> allPixels;
-
-    // 0 = border. int 1 - 9 = colours
-    private static final int NUMBER_OF_SECTIONS  = 10;
 
     public PixelOrganizer() {
         allPixels = new HashMap<>();
@@ -21,6 +17,14 @@ public class PixelOrganizer {
     public void addPixel(int region, Pixel pixel) {
         if (allPixels.containsKey(region)) {
             allPixels.get(region).addPixel(pixel);
+        }
+    }
+
+    public void setAllColors(BufferedImage img, int region, Color color) {
+        PixelRegion changeRegion = allPixels.get(region);
+
+        if (changeRegion != null) {
+            changeRegion.setColors(img, color);
         }
     }
     // Iterate through the img array, and put it in the map.

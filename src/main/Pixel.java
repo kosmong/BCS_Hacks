@@ -12,4 +12,16 @@ public class Pixel {
         this.y = y;
         this.color = color;
     }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
