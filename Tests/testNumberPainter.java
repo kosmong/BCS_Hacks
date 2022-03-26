@@ -14,6 +14,7 @@ public class testNumberPainter {
     private static final String LINEART = "src/imagesOriginal/lineart.jpeg";
     private static final String TIGER = "src/imagesOriginal/tiger.jpeg";
     private static final String PENGUINBALLOON = "src/imagesOriginal/penguinballoon.jpeg";
+    private static final String PAINTBYNUMCANDLE = "src/imagesOriginal/paintbynumbercandle.jpeg";
 
     private static final String WRITEPENGUIN = "penguin.jpeg";
     private static final String WRITEPENGUINFAMILY = "penguinfamily.jpeg";
@@ -24,6 +25,7 @@ public class testNumberPainter {
     private static final String WRITELINEART = "lineart.jpeg";
     private static final String WRITETIGER = "tiger.jpeg";
     private static final String WRITEPENGUINBALLOON = "penguinballoon.jpeg";
+    private static final String WRITEPAINTNUMCANDLE = "candle.jpeg";
 
     private static final Color RED = Color.RED;
     private static final Color WHITE = Color.WHITE;
@@ -40,6 +42,7 @@ public class testNumberPainter {
     private NumberPainter paintLineart;
     private NumberPainter paintTiger;
     private NumberPainter paintPenguinBalloon;
+    private NumberPainter paintCandle;
 
     @Before
     public void startUp() {
@@ -52,6 +55,7 @@ public class testNumberPainter {
         paintLineart = new NumberPainter(LINEART);
         paintTiger = new NumberPainter(TIGER);
         paintPenguinBalloon = new NumberPainter(PENGUINBALLOON);
+        paintCandle = new NumberPainter(PAINTBYNUMCANDLE);
     }
 
 //    @Test
@@ -95,19 +99,24 @@ public class testNumberPainter {
         paintPenguinBalloon.changeRegionColor(0, CYAN);
         paintPenguinBalloon.renderImage(WRITEPENGUINBALLOON);
 
-//        paintBoba.imageCleanUp();
-//        paintBoba.getBorders();
-//        paintBoba.changeRegionColor(0, Color.DARK_GRAY);
-//        paintBoba.renderImage(WRITEBOBA);
-//
-//        paintPenguinFamily.imageCleanUp();
-//        paintPenguinFamily.getBorders();
-//        paintPenguinFamily.changeRegionColor(0, Color.LIGHT_GRAY);
-//        paintPenguinFamily.renderImage(WRITEPENGUINFAMILY);
-//
-//        paintLineart.imageCleanUp();
-//        paintLineart.getBorders();
-//        paintLineart.changeRegionColor(0, CYAN);
-//        paintLineart.renderImage(WRITELINEART);
+        paintBoba.imageCleanUp();
+        paintBoba.getBorders();
+        paintBoba.changeRegionColor(0, Color.DARK_GRAY);
+        paintBoba.renderImage(WRITEBOBA);
+
+        paintPenguinFamily.imageCleanUp();
+        paintPenguinFamily.getBorders();
+        paintPenguinFamily.changeRegionColor(0, Color.LIGHT_GRAY);
+        paintPenguinFamily.renderImage(WRITEPENGUINFAMILY);
+
+        paintLineart.imageCleanUp();
+        paintLineart.getBorders();
+        paintLineart.changeRegionColor(0, CYAN);
+        paintLineart.renderImage(WRITELINEART);
+
+        paintCandle.imageCleanUp();
+        paintCandle.getBorders();
+        paintCandle.changeRegionColor(0, Color.BLUE);
+        paintCandle.renderImage(WRITEPAINTNUMCANDLE);
     }
 }
