@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class RunNumberPainter extends JFrame implements ActionListener {
     private static final String PENGUIN  = "src/imagesOriginal/penguin.jpeg";
-    protected final static int WIDTH = 600;
+    protected final static int WIDTH = 800;
     protected final static int HEIGHT = 1000;
 
     private NumberPainter painter;
