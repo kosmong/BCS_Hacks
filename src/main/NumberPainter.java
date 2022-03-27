@@ -18,7 +18,7 @@ public class NumberPainter {
     private final static int BLACK = Color.BLACK.getRGB();
     private final static int WHITE = Color.WHITE.getRGB();
     private final static int TOLERANCE = Color.GRAY.getRGB();
-    private final static String DIRECTORY = "src/imagesAltered";
+    private final static String DIRECTORY = "src/imagesAltered/";
 
     public NumberPainter(String imgLocation) {
         try {
@@ -89,10 +89,11 @@ public class NumberPainter {
             boolean notBorder = !target.pixelInBorder();
             if (diffColor && notBorder) {
                 target.setColor(color);
-                propagateColor(x++, y, color);
-                propagateColor(x--, y, color);
-                propagateColor(x, y++, color);
-                propagateColor(x, y--, color);
+                Color agh = color;
+                propagateColor(x + 1, y, agh);
+                propagateColor(x - 1, y, color);
+                propagateColor(x, y + 1, color);
+                propagateColor(x, y - 1, color);
             }
         }
     }
