@@ -10,7 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class RunNumberPainter extends JFrame implements ActionListener {
-    private static final String PENGUIN  = "src/imagesOriginal/penguinballoon.jpeg";
+    private static final String PENGUIN  = "src/imagesOriginal/tiger.jpeg";
     protected final static int WIDTH = 800;
     protected final static int HEIGHT = 1000;
 
@@ -51,8 +51,8 @@ public class RunNumberPainter extends JFrame implements ActionListener {
                 System.out.println(painter.getHeight());
                 if (x >= 0 && y >= 0 && x < painter.getWidth() & y < painter.getHeight()) {
                     painter.propagateColor(x, y, currColor);
-                    painter.renderImage("penguinballoon.jpeg");
-                    image = new ImageIcon("src/imagesAltered/penguinballoon.jpeg");
+                    painter.renderImage("tiger.jpeg");
+                    image = new ImageIcon("src/imagesAltered/tiger.jpeg");
                     image.getImage().flush();
                     imgLabel.setIcon(image);
                 }
