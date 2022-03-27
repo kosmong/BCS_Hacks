@@ -17,7 +17,7 @@ public class NumberPainter {
     private int height;
     private final static int BLACK = Color.BLACK.getRGB();
     private final static int WHITE = Color.WHITE.getRGB();
-    private final static int TOLERANCE = Color.GRAY.getRGB();
+    private final static int TOLERANCE = 40;
     private final static String DIRECTORY = "src/imagesAltered/";
 
     public NumberPainter(String imgLocation) {
@@ -35,7 +35,8 @@ public class NumberPainter {
     public void imageCleanUp() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (inputImg.getRGB(x, y) > TOLERANCE) {
+                Color now = new Color(inputImg.getRGB(x, y) , true);
+                if (now.getBlue() > TOLERANCE && now.getRed() > TOLERANCE && now.getGreen() > TOLERANCE) {
                     try {
                         imageData[x][y] = new Pixel(x, y, Color.WHITE);
                     } catch (NullPointerException n) {
