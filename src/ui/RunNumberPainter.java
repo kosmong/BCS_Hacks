@@ -20,6 +20,7 @@ public class RunNumberPainter extends JFrame implements ActionListener {
     public RunNumberPainter() {
         super("Number Paint");
         painter = new NumberPainter(PENGUIN);
+        painter.imageCleanUp();
         painter.getStencil();
         setSize(WIDTH, HEIGHT);
         //setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
@@ -38,12 +39,22 @@ public class RunNumberPainter extends JFrame implements ActionListener {
                 super.mouseClicked(e);
                 ColorPicker currColorPane = (ColorPicker) newContentPane;
                 Color currColor = currColorPane.getPalette().getColor();
-                int x = e.getX();
-                int y = e.getY();
-                painter.changeRegionColor(0, currColor);
-                painter.renderImage("thick_square.jpg");
-                image = new ImageIcon("src/imagesAltered/thick_square.jpg");
-                imgLabel.setIcon(image);
+                int xZero = (imgLabel.getWidth() - painter.getWidth()) / 2;
+                int yZero = (imgLabel.getHeight() - painter.getHeight()) / 2;
+                int x = e.getX() - xZero;
+                int y = e.getY() - yZero;
+                System.out.println(x);
+                System.out.println(y);
+                System.out.println("COORDS");
+                System.out.println("WIDTH HEIGHT");
+                System.out.println(painter.getWidth());
+                System.out.println(painter.getHeight());
+                if (x >= 0 && y >= 0 && x < painter.getWidth() & y < painter.getHeight()) {
+                    painter.propagateColor(x, y, currColor);
+                    painter.renderImage("thick_square.jpg");
+                    image = new ImageIcon("src/imagesAltered/thick_square.jpg");
+                    imgLabel.setIcon(image);
+                }
             }
         });
         add(imgLabel);

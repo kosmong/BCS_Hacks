@@ -81,20 +81,23 @@ public class NumberPainter {
         }
     }
 
+    public void propagateColor(int x, int y, Color color) {
+        boolean inBounds = x >= 0 && y >= 0 && x < width && y < height;
+        if (inBounds) {
+            Pixel target = imageData[x][y];
+            boolean diffColor = color.getRGB() != target.getColourARBG();
+            boolean notBorder = !target.pixelInBorder();
+            if (diffColor && notBorder) {
+                target.setColor(color);
+                propagateColor(x++, y, color);
+                propagateColor(x--, y, color);
+                propagateColor(x, y++, color);
+                propagateColor(x, y--, color);
+            }
+        }
+    }
 
     public void renderImage(String fileName) {
-        //for (PixelRegion next : organizer.getAllPixels().values()) {
-//        PixelRegion border = organizer.getAllPixels().get(0);
-//        for (Pixel thisPixel : border.getPixels()) {
-//            outputImg.setRGB(thisPixel.getX(), thisPixel.getY(), thisPixel.getColor().getRGB());
-//        }
-//
-//        PixelRegion colouring = organizer.getAllPixels().get(1);
-//        for (Pixel thisPixel : colouring.getPixels()) {
-//            outputImg.setRGB(thisPixel.getX(), thisPixel.getY(), thisPixel.getColor().getRGB());
-//        }
-        //}
-
         File outPut = new File(DIRECTORY, fileName);
         try {
 
@@ -113,5 +116,13 @@ public class NumberPainter {
 
     public void changeRegionColor(int region, Color color) {
         imageData = organizer.setAllColors(imageData, region, color);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
