@@ -63,7 +63,7 @@ public class NumberPainter {
             for (int y = 0; y < height; y++) {
                 if (inputImg.getRGB(x, y) == BLACK) {
                     Pixel p = new Pixel(x, y, Color.BLACK);
-                    p.setAsBorder();;
+                    p.setAsBorder();
                     organizer.addPixel(0, p);
                 }
             }

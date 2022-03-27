@@ -70,7 +70,6 @@ public class RunNumberPainter extends JFrame implements ActionListener {
 
     }
 
-    //EFFECTS: runs the GUI of the farm
     public static void main(String[] args) {
         new RunNumberPainter();
     }
